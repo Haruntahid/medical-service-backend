@@ -1,6 +1,6 @@
 package com.medical.medical_service.service;
 
-import com.medical.medical_service.model.Users;
+import com.medical.medical_service.model.entity.Users;
 import com.medical.medical_service.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

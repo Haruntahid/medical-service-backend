@@ -1,6 +1,8 @@
-package com.medical.medical_service.model;
+package com.medical.medical_service.model.entity;
 
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -13,13 +15,8 @@ public class Users {
     private String name;
     private String password;
 
-    public Users(int id, String name, String password) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-    }
-
-    public Users() {}
+    @OneToMany
+    private Set<Roles> role;
 
     public int getId() {
         return id;
@@ -43,5 +40,13 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Roles> getRole() {
+        return role;
+    }
+
+    public void setRole(Set<Roles> role) {
+        this.role = role;
     }
 }
