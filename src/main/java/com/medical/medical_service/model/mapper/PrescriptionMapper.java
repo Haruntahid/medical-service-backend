@@ -25,6 +25,7 @@ public class PrescriptionMapper {
         List<Medicine> medicines  = new ArrayList<>();
 
         for (MedicineDTO medicineDTO :dto.getMedicines()){
+            System.out.println(medicineDTO);
             medicines.add(medicineMapper.map(medicineDTO));
         }
         entity.setMedicines(medicines);

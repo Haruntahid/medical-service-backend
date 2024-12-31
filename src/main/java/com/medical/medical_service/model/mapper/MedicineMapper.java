@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class MedicineMapper {
     public  Medicine map(MedicineDTO dto) {
         Medicine entity = new Medicine();
+        entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());

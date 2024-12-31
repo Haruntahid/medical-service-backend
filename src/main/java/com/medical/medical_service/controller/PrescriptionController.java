@@ -54,5 +54,10 @@ public class PrescriptionController {
         return ResponseEntity.ok("Prescription update Successfully");
     }
 
+    @GetMapping("/overview")
+    public ResponseEntity<?> getOverviews() {
+      return prescriptionService.getOverview();
+    }
+
 
 }
