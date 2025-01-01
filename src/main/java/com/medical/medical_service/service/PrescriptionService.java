@@ -22,20 +22,20 @@ public class PrescriptionService {
         return prescriptionRepository.findAll();
     }
 
-//    save prescription
+    //    save prescription
     @Transactional
     public Prescription savePrescription(Prescription prescription) {
         return prescriptionRepository.save(prescription);
     }
 
-//    delete prescription
+    //    delete prescription
     public boolean deletePrescription(Integer id) {
         boolean idExist = prescriptionRepository.findById(id).isPresent();
 
         if (idExist) {
             prescriptionRepository.deleteById(id);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -52,9 +52,10 @@ public class PrescriptionService {
 //            Date priccriptionDate = prescription.getPrescriptionDate();
 //            prescriptionSet.add(priccriptionDate);
 //
-////            if (priccriptionDate == prescription.getPrescriptionDate()) {
-////                dates.add(priccriptionDate);
-////            }
+
+    /// /            if (priccriptionDate == prescription.getPrescriptionDate()) {
+    /// /                dates.add(priccriptionDate);
+    /// /            }
 //
 //            dates.add(prescription.getPrescriptionDate());
 //        }
@@ -64,23 +65,21 @@ public class PrescriptionService {
 
 
 //    get overview
-    public ResponseEntity<?> getOverview(){
-    List<Prescription> prescriptions = prescriptionRepository.findAll();
-     HashMap<String ,Integer > dateMap = new HashMap<>();
-     for(Prescription prescription : prescriptions){
+    public ResponseEntity<?> getOverview() {
+        List<Prescription> prescriptions = prescriptionRepository.findAll();
+        HashMap<String, Integer> dateMap = new HashMap<>();
+        for (Prescription prescription : prescriptions) {
 
 
+            String date = prescription.getPrescriptionDate().toString().split(" ")[0];
+            if (dateMap.containsKey(date)) {
+                dateMap.put(date, dateMap.get(date) + 1);
+            } else {
+                dateMap.put(date, 1);
+            }
 
-
-         String date = prescription.getPrescriptionDate().toString().split(" ")[0];
-         if (dateMap.containsKey(date)){
-             dateMap.put(date, dateMap.get(date) + 1);
-         } else {
-             dateMap.put(date, 1);
-         }
-
-     }
-     return new ResponseEntity<>(dateMap, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(dateMap, HttpStatus.OK);
     }
 
 
